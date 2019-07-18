@@ -1,0 +1,59 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1><strong>Task Tracker</strong></h1>
+    <h4><strong>v2.0</strong></h4>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form [formGroup]="rForm" (ngSubmit)="addTask(rForm.value)">
+        <div class="form-container">
+          <h3>Create a Task</h3>
+
+          <div class="form-group">
+            <label for="name">Task Name</label>
+            <input type="text" class="form-control gray-input" id="name" formControlName="name">
+            <small class="form-text text-muted"
+              *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Minimun Input: 2</small>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control gray-input" id="date" formControlName="date">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Assigned To</label>
+            <input type="text" class="form-control gray-input" id="assigned" formControlName="assigned">
+            <small class="form-text text-muted"
+              *ngIf="!rForm.controls['assigned'].valid && rForm.controls['assigned'].touched">Required and Maximun
+              Input: 10</small>
+          </div>
+
+          <input type="submit" class="button btn btn-dark" value="Submit" [disabled]="!rForm.valid">
+
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <div *ngIf="!tasks; else taskTable"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #taskTable>
+  <h3>Existing Tasks</h3>
+  <table class="table table-striped round">
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <th>{{ task.name }}</th>
+        <td>{{ task.date }}</td>
+        <td><strong>{{ task.assigned }}</strong></td>
+        <td>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="rmTask(task)">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

@@ -1,0 +1,18 @@
+.round{
+    border: rgb(240, 240, 240) 3px solid;
+}
+
+.gray-input {
+    background-color: rgb(240, 240, 240);
+}
+
+.jumbotron {
+    background-color: rgb(240, 240, 240);
+}
+
+.table th{
+    vertical-align: middle;
+}
+.table td{
+    vertical-align: middle;
+}
